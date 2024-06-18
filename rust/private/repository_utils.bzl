@@ -122,14 +122,6 @@ def BUILD_for_rustfmt(target_triple):
         binary_ext = system_to_binary_ext(target_triple.system),
     )
 
-_build_file_for_clippy_template = """\
-filegroup(
-    name = "clippy_driver_bin",
-    srcs = ["bin/clippy-driver{binary_ext}"],
-    visibility = ["//visibility:public"],
-)
-"""
-
 _build_file_for_rust_analyzer_proc_macro_srv = """\
 filegroup(
    name = "rust_analyzer_proc_macro_srv",
@@ -149,6 +141,19 @@ def BUILD_for_rust_analyzer_proc_macro_srv(exec_triple):
     return _build_file_for_rust_analyzer_proc_macro_srv.format(
         binary_ext = system_to_binary_ext(exec_triple.system),
     )
+
+_build_file_for_clippy_template = """\
+filegroup(
+    name = "clippy_driver_bin",
+    srcs = ["bin/clippy-driver{binary_ext}"],
+    visibility = ["//visibility:public"],
+)
+filegroup(
+    name = "cargo_clippy_bin",
+    srcs = ["bin/cargo-clippy{binary_ext}"],
+    visibility = ["//visibility:public"],
+)
+"""
 
 def BUILD_for_clippy(target_triple):
     """Emits a BUILD file the clippy archive.
@@ -244,6 +249,7 @@ rust_toolchain(
     rustfmt = {rustfmt_label},
     cargo = "//:cargo",
     clippy_driver = "//:clippy_driver_bin",
+    cargo_clippy = "//:cargo_clippy_bin",
     llvm_cov = {llvm_cov_label},
     llvm_profdata = {llvm_profdata_label},
     rustc_lib = "//:rustc_lib",
