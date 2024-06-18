@@ -36,7 +36,7 @@ rust_library(
 alias(
     name = "rustfmt",
     actual = ":target_aware_rustfmt",
-    deprecation = "Prefer //tools/rustfmt:target_aware_rustfmt",
+    deprecation = "Prefer //tools/upstream_wrapper:rustfmt",
     visibility = ["//visibility:public"],
 )
 
@@ -88,7 +88,7 @@ rust_clippy(
 # Deprecated but present for compatibility.
 alias(
     name = "upstream_rustfmt",
-    actual = "//tools/upstream_wrapper:upstream_rustfmt",
-    deprecation = "Prefer //tools/upstream_wrapper:upstream_rustfmt",
+    actual = "//tools/upstream_wrapper:rustfmt",
+    deprecation = "Prefer //tools/upstream_wrapper:rustfmt",
     visibility = ["//visibility:public"],
 )

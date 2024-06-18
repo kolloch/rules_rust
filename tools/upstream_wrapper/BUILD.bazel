@@ -8,11 +8,11 @@ tools = {
     "rustfmt": "//rust/toolchain:current_rustfmt_toolchain_for_target",
 }
 
-# This is a small wrapper around the raw upstream binary which can be `bazel run`.
+# Create wrappers around the tools that can be used `bazel run` or bazel_env.
 
 [
     rust_binary(
-        name = "upstream_{}".format(tool_name),
+        name = tool_name,
         srcs = [
             "src/main.rs",
         ],
