@@ -389,6 +389,7 @@ def _generate_sysroot(
         rustdoc (File): The path to a `rustdoc` executable.
         rustc_lib (Target): A collection of Files containing dependencies of `rustc`.
         cargo (File, optional): The path to a `cargo` executable.
+        cargo_clippy (File, optional): The path to a `cargo-clippy` executable.
         clippy (File, optional): The path to a `clippy-driver` executable.
         llvm_tools (Target, optional): A collection of llvm tools used by `rustc`.
         rust_std (Target, optional): A collection of Files containing Rust standard library components.
@@ -713,13 +714,13 @@ rust_toolchain = rule(
             allow_single_file = True,
             cfg = "exec",
         ),
-        "clippy_driver": attr.label(
-            doc = "The location of the `clippy-driver` binary. Can be a direct source or a filegroup containing one item.",
+        "cargo_clippy": attr.label(
+            doc = "The location of the `cargo_clippy` binary. Can be a direct source or a filegroup containing one item.",
             allow_single_file = True,
             cfg = "exec",
         ),
-        "cargo_clippy": attr.label(
-            doc = "The location of the `cargo_clippy` binary. Can be a direct source or a filegroup containing one item.",
+        "clippy_driver": attr.label(
+            doc = "The location of the `clippy-driver` binary. Can be a direct source or a filegroup containing one item.",
             allow_single_file = True,
             cfg = "exec",
         ),
