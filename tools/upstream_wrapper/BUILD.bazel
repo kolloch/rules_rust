@@ -2,6 +2,9 @@ load("//rust:defs.bzl", "rust_binary", "rust_clippy", "rust_library")
 load("//tools:tool_utils.bzl", "aspect_repository")
 
 tools = {
+    "cargo": "//rust/toolchain:current_cargo_files",
+    "cargo_clippy": "//rust/toolchain:current_cargo_clippy_files",
+    "rustc": "//rust/toolchain:current_rustc_files",
     "rustfmt": "//rust/toolchain:current_rustfmt_toolchain_for_target",
 }
 
