@@ -22,7 +22,7 @@ fn main() {
     }
 
     let tool_directory = wrapped_tool_path.parent().expect("parent directory of tool binary");
-    let old_path = std::env::var_os("PATH").unwrap_or(OsString::new());
+    let old_path = std::env::var_os("PATH").unwrap_or_default();
     let mut new_path = OsString::from(tool_directory);
     new_path.push(PATH_SEPARATOR);
     new_path.push(&old_path);
