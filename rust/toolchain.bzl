@@ -582,6 +582,7 @@ def _rust_toolchain_impl(ctx):
         "RUSTDOC": sysroot.rustdoc.path,
         "RUST_DEFAULT_EDITION": ctx.attr.default_edition or "",
         "RUST_SYSROOT": sysroot_path,
+        "RUST_SYSROOT_SHORT": sysroot_short_path,
     }
 
     if sysroot.cargo:

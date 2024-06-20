@@ -23,13 +23,19 @@ fail() {
 
 # MARK - Args
 
-if [[ "$#" -ne 1 ]]; then
-  fail "Usage: $0 /path/to/hello_world"
+if [[ "$#" -lt 1 ]]; then
+  fail "Usage: $0 /path/to/bin <args>"
 fi
-HELLO_WORLD="$(rlocation "$1")"
+RUSTFMT="$(rlocation "$1")"
 
 # MARK - Test
 
-OUTPUT="$("${HELLO_WORLD}")"
-[[ "${OUTPUT}" == "Hello, world!" ]] ||
-  fail 'Expected "Hello, world!", but was' "${OUTPUT}"
+# simulate bazel run with setting BUILD_WORKING_DIRECTORY
+export BUILD_WORKING_DIRECTORY="$PWD" 
+
+OUTPUT="$(echo -e "fn main() {\n\n}" | "$RUSTFMT")"
+
+# without newlines in body
+EXPECTED_OUTPUT="fn main() {}"
+[[ "${OUTPUT}" == "${EXPECTED_OUTPUT}" ]] ||
+  fail 'Expected "'"${EXPECTED_OUTPUT}"'", but was' "${OUTPUT}"

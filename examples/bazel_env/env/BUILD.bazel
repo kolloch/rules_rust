@@ -1,5 +1,7 @@
 load("@bazel_env.bzl", "bazel_env")
 
+package(default_visibility = ["//visibility:public"])
+
 bazel_env(
     name = "env",
     tools = {

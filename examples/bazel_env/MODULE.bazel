@@ -34,7 +34,10 @@ crate = use_extension(
 crate.from_cargo(
     name = "crates",
     cargo_lockfile = "//:Cargo.lock",
-    manifests = ["//:Cargo.toml"],
+    manifests = [
+        "//:Cargo.toml",
+        "//rust/hello_world:Cargo.toml",
+    ],
 )
 use_repo(crate, "crates")
 
