@@ -1,6 +1,6 @@
+use std::ffi::OsString;
 use std::path::PathBuf;
 use std::process::{exit, Command};
-use std::ffi::OsString;
 
 const WRAPPED_TOOL_NAME: &str = env!("WRAPPED_TOOL_NAME");
 const WRAPPED_TOOL_TARGET: &str = env!("WRAPPED_TOOL_TARGET");
@@ -21,7 +21,9 @@ fn main() {
         );
     }
 
-    let tool_directory = wrapped_tool_path.parent().expect("parent directory of tool binary");
+    let tool_directory = wrapped_tool_path
+        .parent()
+        .expect("parent directory of tool binary");
     let old_path = std::env::var_os("PATH").unwrap_or_default();
     let mut new_path = OsString::from(tool_directory);
     new_path.push(PATH_SEPARATOR);
