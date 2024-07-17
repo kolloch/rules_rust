@@ -28,6 +28,7 @@ all_tools = [target for target in tools.values()]
         deps = [
             "//tools/runfiles",
         ],
+        stamp = 0,
     )
     for (tool_name, target) in tools.items()
 ]
